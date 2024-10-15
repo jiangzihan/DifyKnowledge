@@ -27,7 +27,7 @@ class RespRecords(BaseModel):
     records: Record
 
 @app.post("/retrieval", response_model=RespRecords)
-async def read_item_post(
+async def retrieval(
     data:RetrievalRequest,
     authorization:str = Header(None),
 ):
