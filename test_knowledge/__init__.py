@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Header, Request
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List
 
 app = FastAPI()
 
@@ -34,7 +35,7 @@ class Record(BaseModel):
     metadata:str
 
 class RespRecords(BaseModel):
-    records: Record
+    records: List[Record]
 
 
 @app.post("/retrieval", response_model=RespRecords)
@@ -47,10 +48,18 @@ async def retrieval(
     print("原始消息: %s"%await request.body())
     print("获取data: %s"%data)
     return RespRecords(
-        records=Record(
-            content="Title: Go Pet Club 32' Soft Collapsible Dog Crate, Portable Pet Carrier, Thick Padded Pet Travel Crate for Indoor & Outdoor, Foldable Kennel Cage with Durable Mesh Windows, Brown ",
-            score=0.2,
-            title="product info",
-            metadata="product: ABC"
-        )
+        records=[
+            Record(
+                content="Title: Go Pet Club 32' Soft Collapsible Dog Crate, Portable Pet Carrier, Thick Padded Pet Travel Crate for Indoor & Outdoor, Foldable Kennel Cage with Durable Mesh Windows, Brown ",
+                score=0.2,
+                title="product info",
+                metadata="product: ABC"
+            ),
+            Record(
+                content="Title: 324234wn ",
+                score=0.8,
+                title="product info22",
+                metadata="product: ABC222"
+            )
+        ]
     )
