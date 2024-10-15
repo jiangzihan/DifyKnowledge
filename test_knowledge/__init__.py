@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Header
+from fastapi import FastAPI, Header, Request
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -28,9 +28,11 @@ class RespRecords(BaseModel):
 
 @app.post("/retrieval", response_model=RespRecords)
 async def retrieval(
+    request:Request,
     data:RetrievalRequest,
     authorization:str = Header(None),
 ):
+    print("原始消息: %s"%await request.body())
     print("获取token: %s"%authorization)
     print("获取data: %s"%data)
     return RespRecords(
