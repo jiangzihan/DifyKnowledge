@@ -40,10 +40,10 @@ class RespRecords(BaseModel):
 async def retrieval(
     request:Request,
     # data:RetrievalRequest,
-    authorization:str = Header(None),
+    # authorization:str = Header(None),
 ):
+    print("原始请求头: %s"%request.headers)
     print("原始消息: %s"%await request.body())
-    print("获取token: %s"%authorization)
     # print("获取data: %s"%data)
     return RespRecords(
         records=Record(
