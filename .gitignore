@@ -1,0 +1,12 @@
+# modify filename to .gitignore
+.env
+.venv/
+.mypy_cache/
+
+.vscode/
+.idea/
+.DS_Store
+target/
+*.log
+__pycache__/
+*/__pycache__
