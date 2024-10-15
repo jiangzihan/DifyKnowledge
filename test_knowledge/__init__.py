@@ -39,12 +39,12 @@ class RespRecords(BaseModel):
 @app.post("/retrieval", response_model=RespRecords)
 async def retrieval(
     request:Request,
-    data:RetrievalRequest,
+    # data:RetrievalRequest,
     authorization:str = Header(None),
 ):
     print("原始消息: %s"%await request.body())
     print("获取token: %s"%authorization)
-    print("获取data: %s"%data)
+    # print("获取data: %s"%data)
     return RespRecords(
         records=Record(
             content="Title: Go Pet Club 32' Soft Collapsible Dog Crate, Portable Pet Carrier, Thick Padded Pet Travel Crate for Indoor & Outdoor, Foldable Kennel Cage with Durable Mesh Windows, Brown ",
